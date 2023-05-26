@@ -1,4 +1,4 @@
-name: "dreamfusion-if_outward"
+name: "dreamfusion-if_prolific_scene"
 tag: "${rmspace:${system.prompt_processor.prompt},_}"
 exp_root_dir: "outputs"
 seed: 0
