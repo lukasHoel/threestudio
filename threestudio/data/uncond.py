@@ -43,6 +43,7 @@ class RandomCameraDataModuleConfig:
     light_distance_range: Tuple[float, float] = (0.8, 1.5)
     eval_elevation_deg: float = 15.0
     eval_camera_distance: float = 1.5
+    eval_lookat_reverse: bool = False
     eval_fovy_deg: float = 70.0
     light_sample_strategy: str = "dreamfusion"
     batch_uniform_azimuth: bool = True
@@ -307,6 +308,8 @@ class RandomCameraDataset(Dataset):
         light_positions: Float[Tensor, "B 3"] = camera_positions
 
         lookat: Float[Tensor, "B 3"] = F.normalize(center - camera_positions, dim=-1)
+        if self.cfg.eval_lookat_reverse:
+            lookat *= -1
         right: Float[Tensor, "B 3"] = F.normalize(torch.cross(lookat, up), dim=-1)
         up = F.normalize(torch.cross(right, lookat), dim=-1)
         c2w: Float[Tensor, "B 3 4"] = torch.cat(
