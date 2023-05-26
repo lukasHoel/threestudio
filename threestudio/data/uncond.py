@@ -46,6 +46,7 @@ class RandomCameraDataModuleConfig:
     eval_fovy_deg: float = 70.0
     light_sample_strategy: str = "dreamfusion"
     batch_uniform_azimuth: bool = True
+    outward: bool = False
 
 
 class RandomCameraIterableDataset(IterableDataset):
@@ -128,6 +129,10 @@ class RandomCameraIterableDataset(IterableDataset):
             ],
             dim=-1,
         )
+
+        # convert to outward
+        if self.cfg.outward:
+            camera_positions = torch.zeros_like(camera_positions)
 
         # default scene center at origin
         center: Float[Tensor, "B 3"] = torch.zeros_like(camera_positions)
@@ -291,6 +296,10 @@ class RandomCameraDataset(Dataset):
             ],
             dim=-1,
         )
+
+        # convert to outward
+        if self.cfg.outward:
+            camera_positions = torch.zeros_like(camera_positions)
 
         # default scene center at origin
         center: Float[Tensor, "B 3"] = torch.zeros_like(camera_positions)
