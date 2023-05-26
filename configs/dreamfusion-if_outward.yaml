@@ -8,11 +8,11 @@ data:
   batch_size: 1
   width: 64
   height: 64
-  camera_distance_range: [0.1, 0.6]
+  camera_distance_range: [1.5, 2.0]
   fovy_range: [40, 70]
   elevation_range: [-10, 90]
   light_sample_strategy: "dreamfusion"
-  eval_camera_distance: 1.0
+  eval_camera_distance: 3.0
   eval_lookat_reverse: true
   eval_fovy_deg: 70.
 
