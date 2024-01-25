@@ -193,5 +193,6 @@ wandb/
 .code-workspace
 
 custom/*
+!custom/put_custom_extensions_here
 
 load/tets/256_tets.npz
